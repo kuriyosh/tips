@@ -2,7 +2,7 @@
 #+SETUPFILE: ~/.emacs.d/template/format-html.setup
 
 * Introduction
-環境構築用のコマンドを毎回ググるのが面倒なので、よく使う設定をまとめておく
+環境構築手順とかたまにしか使わないけど有益なコマンドとか毎回ググるのが面倒なので、よく使うものをまとめておく
 
 * Editor (Emacs)
 自分の設定を持ってきて、 ~~/.emacs.d/init.el~ に保存
@@ -42,3 +42,8 @@ $ curl -L git.io/nodebrew | perl - setup
 $ export PATH=$HOME/.nodebrew/current/bin:$PATH
 #+END_SRC
 
+* Bash コマンド
+** sudo で rsync
+#+BEGIN_SRC sh
+$ rsync -auv -e "ssh -i <SSH 鍵>" --rsync-path="sudo rsync " <ユーザー名>@<ホスト名>:/remotedir /localdir
+#+END_SRC
