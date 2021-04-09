@@ -1,49 +1,54 @@
-#+TITLE: README
-#+SETUPFILE: ~/.emacs.d/template/format-html.setup
-
-* Introduction
+# Yoshiki の tips
+## Introduction
 環境構築手順とかたまにしか使わないけど有益なコマンドとか毎回ググるのが面倒なので、よく使うものをまとめておく
 
-* Editor (Emacs)
+## Editor (Emacs)
 自分の設定を持ってきて、 ~~/.emacs.d/init.el~ に保存
-#+BEGIN_SRC sh
+```sh
 $ sudo yum install emacs-nox
 $ curl https://raw.githubusercontent.com/yosyos36/dotfiles/master/.emacs.d/cli.el -o ~/.emacs.d/init.el
-#+END_SRC
+```
 
-* Docker
-** Amazon Linux 2
-#+BEGIN_SRC sh
+## Docker
+### Amazon Linux 2
+```
 $ sudo amazon-linux-extras install docker
-#+END_SRC
-** Install
-#+BEGIN_SRC sh
 $ sudo groupadd docker
 $ sudo usermod -a -G docker ec2-user
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $ sudo chmod +x /usr/local/bin/docker-compose
 $ sudo service docker start
-#+END_SRC
+```
 
-* Python
-** pyenv
-https://github.com/pyenv/pyenv#installation
-#+BEGIN_SRC sh
+## Python
+### pyenv
+```sh
 $ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 $ echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
 $ echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
-#+END_SRC
+```
 
-* JavaScript
-** nodebrew
+## JavaScript
+### nodebrew
 https://github.com/hokaccha/nodebrew
-#+BEGIN_SRC sh
+```sh
 $ curl -L git.io/nodebrew | perl - setup
 $ export PATH=$HOME/.nodebrew/current/bin:$PATH
-#+END_SRC
+```
 
-* Bash コマンド
-** sudo で rsync
-#+BEGIN_SRC sh
+## Bash コマンド
+#### sudo 権限で rsync
+```sh
 $ rsync -auv -e "ssh -i <SSH 鍵>" --rsync-path="sudo rsync " <ユーザー名>@<ホスト名>:/remotedir /localdir
-#+END_SRC
+```
+
+## Linux
+### NAT 構築
+```
+$ sudo su -
+$ iptables -L
+$ iptables -F
+$ echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+$ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+$ iptables -t nat -L
+```
