@@ -56,6 +56,7 @@ $ iptables -t nat -L
 ## ImageMagick
 ### 画像の余白削除
 画像によって `-fuzz` の値を調整する必要がある
+(透明背景を trim する場合には、`-fuzz` なしでも大丈夫な気がする)
 ```
 $ convert <画像ファイル> -fuzz <N %> -trim <出力画像ファイル>
 ```
