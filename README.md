@@ -52,3 +52,10 @@ $ echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
 $ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 $ iptables -t nat -L
 ```
+
+## ImageMagick
+### 画像の余白削除
+画像によって `-fuzz` の値を調整する必要がある
+```
+$ convert <画像ファイル> -fuzz <N %> -trim <出力画像ファイル>
+```
