@@ -60,3 +60,9 @@ $ iptables -t nat -L
 ```
 $ convert <画像ファイル> -fuzz <N %> -trim <出力画像ファイル>
 ```
+
+## git
+### 過去のコミットから特定のファイルを削除
+```sh
+git filter-branch --index-filter 'git rm --cached --ignore-unmatch <ファイル名>' HEAD
+```
