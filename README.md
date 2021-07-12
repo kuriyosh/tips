@@ -66,3 +66,8 @@ $ convert <画像ファイル> -fuzz <N %> -trim <出力画像ファイル>
 ```sh
 git filter-branch --index-filter 'git rm --cached --ignore-unmatch <ファイル名>' HEAD
 ```
+
+### merge 済みブランチの一括削除
+```sh
+git branch --merged | ag -v "master" | xargs git branch -d
+```
