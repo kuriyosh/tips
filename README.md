@@ -71,3 +71,8 @@ git filter-branch --index-filter 'git rm --cached --ignore-unmatch <ファイル
 ```sh
 git branch --merged | ag -v "master" | xargs git branch -d
 ```
+
+### squash merge されたブランチの一括削除
+```bash
+git checkout -q main && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base main $branch) && [[ $(git cherry main $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done
+```
